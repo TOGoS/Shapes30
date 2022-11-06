@@ -1,0 +1,60 @@
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:s30="http://ns.nuke24.net/Shapes30/"
+>
+	<s30:Vertex rdf:nodeID="v0">
+		<!-- Put as many components in position as you want!
+		     But for 2D shapes we'll only generally care about the first two,
+		     which we'll think of as 'x' and 'y' -->
+		<s30:position>0,0</s30:position>
+	</s30:Vertex>
+	<s30:Vertex rdf:nodeID="v1">
+		<s30:position>1,0</s30:position>
+	</s30:Vertex>
+	<s30:Vertex rdf:nodeID="v1">
+		<s30:position>1,0</s30:position>
+	</s30:Vertex>
+	<s30:Vertex rdf:nodeID="v2">
+		<s30:position>1,1</s30:position>
+	</s30:Vertex>
+	<s30:Vertex rdf:nodeID="v3">
+		<s30:position>0,1</s30:position>
+	</s30:Vertex>
+
+	<s30:Polygon rdf:ID="the-square">
+		<s30:segments rdf:parseType="Collection">
+			<s30:Line>
+				<s30:startPoint rdf:nodeID="v0"/>
+				<s30:endPoint rdf:nodeID="v1"/>
+			</s30:Line>
+			<s30:Line>
+				<s30:startPoint rdf:nodeID="v1"/>
+				<s30:endPoint rdf:nodeID="v2"/>
+			</s30:Line>
+			<s30:Line>
+				<s30:startPoint rdf:nodeID="v2"/>
+				<s30:endPoint rdf:nodeID="v3"/>
+			</s30:Line>
+			<s30:Line>
+			<s30:startPoint rdf:nodeID="v3"/>
+				<s30:endPoint rdf:nodeID="v0"/>
+			</s30:Line>
+		</s30:segments>
+	</s30:Polygon>
+
+	<!-- A fancy way of saying the square -->
+	<s30:CompoundShape2D rdf:ID="the-square-as-a-compound-shape">
+		<!-- Components are unioned together to make the shape before subtractions -->
+		<s30:components rdf:parseType="Collection">
+			<s30:Polygon rdf:about="#the-square"/>
+		</s30:components>
+		<!-- Subtractions is same as components, but is subtracted from the union of components -->
+		<s30:subtractions rdf:parseType="Collection"/>
+		<s30:transforms rdf:parseType="Collection">
+			<!-- List of transforms; if list not specified, defaults to just the identity transform.
+			     result of sum(positiveComponents)-sum(negativeComponents) shape is pasted
+			     at each one. -->
+			<s30:Transform rdf:about="http://ns.nuke24.net/Shapes30/Transforms/Identity"/>	
+		</s30:transforms>
+	</s30:CompoundShape2D>
+</rdf:RDF>
